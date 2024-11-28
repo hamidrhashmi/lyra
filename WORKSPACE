@@ -20,6 +20,13 @@ http_archive(
     sha256 = "2a778d821997df7d8646c9c59b8edb9a573a6e04c534c01892a40aa524a7b68c",
 )
 
+# gflags library required to load glog
+http_archive(
+    name = "gflags",
+    urls = ["https://github.com/gflags/gflags/archive/refs/tags/v2.2.2.tar.gz"],
+    strip_prefix = "gflags-2.2.2",
+)
+
 # proto_library, cc_proto_library, and java_proto_library rules implicitly
 # depend on @com_google_protobuf for protoc and proto runtimes.
 # This statement defines the @com_google_protobuf repo.
