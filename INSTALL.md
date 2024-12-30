@@ -79,4 +79,30 @@ echo $ORIGIN
 bazel-out/android-arm64-v8a-opt/bin/
 ```
 
+### More Extra
+```
+apt install git aptitude
+cd /usr/local/
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+export PATH=/usr/local/depot_tools:$PATH
+mkdir /root/WebRTC/
+cd /root/WebRTC/
+fetch --nohooks webrtc_android
+gclient sync
+/src/build/install-build-deps.sh
+cd src/
+gn gen out/Debug --args='target_os="android" target_cpu="arm"'
+ninja -C out/Debug
+ninja -C out/Release
+
+gn gen out/Release-Android-With-Opus --args='target_os="android" target_cpu="arm64" is_debug=false is_component_build=false rtc_include_tests=false use_openh264=false use_vpx=false use_system_opus=true use_system_zlib=true'
+gn gen out/Release --args='target_os="android" target_cpu="arm64" is_debug=false'
+```
+### Some USeful links
+
+https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up
+https://webrtc.github.io/webrtc-org/native-code/android/
+https://webrtc.github.io/webrtc-org/native-code/development/prerequisite-sw/  
+
+
 Enjoy :wink:
