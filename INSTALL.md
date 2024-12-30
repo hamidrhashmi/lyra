@@ -53,9 +53,12 @@ vim /root/.bashrc
 ```
 
 ### Download Lyra
-```
+```bash
 git clone https://github.com/hamidrhashmi/lyra.git
 cd lyra
+```
+make soft links to android SDK and then execute the following commands
+```bash
 bazel sync
 bazel build -c opt lyra/android_example:lyra_android_lib --config=android_arm64
 ```
@@ -63,6 +66,17 @@ If you want to create the binaries for Linux
 ```bash
 bazel build -c opt lyra/cli_example:encoder_main --config=android_arm64
 bazel build -c opt lyra/cli_example:decoder_main --config=android_arm64
+```
+
+### Extra
+Some Extra useful commands
+```bash
+apt install ninja
+apt-get install libc++-dev
+export ANDROID_BIN_PATH=/root/android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/
+bazel build -c opt lyra/android_example:lyra_android_example --config=android_arm64 --config=clang_toolchain
+echo $ORIGIN
+bazel-out/android-arm64-v8a-opt/bin/
 ```
 
 Enjoy :wink:
